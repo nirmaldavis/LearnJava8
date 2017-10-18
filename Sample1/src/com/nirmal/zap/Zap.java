@@ -3,7 +3,7 @@ package com.nirmal.zap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
@@ -50,9 +50,23 @@ public class Zap {
 	public static List<String> zap2(List<String> lines, String omit) {
 
 		return lines
+//				.stream()
 				.parallelStream()
-				.filter( line -> !omit.equals(line) )
+//				.filter( line -> !omit.equals(line) )
+//				.filter( not (omit::equals))
+				.filter(not(omit::equals))
 				.collect(toList());
 	}
 	
+	
+	/**
+     * A generic negation predicate that can be used to negate a
+     * predicate.
+     *
+     * @return The negation of the input predicate.
+     */
+    public static<T> Predicate<T> not(Predicate<T> p) {
+        return p.negate();
+    }
+    
 }
