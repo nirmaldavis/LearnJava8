@@ -53,7 +53,6 @@ public class Zap {
 //				.stream()
 				.parallelStream()
 //				.filter( line -> !omit.equals(line) )
-//				.filter( not (omit::equals))
 				.filter(not(omit::equals))
 				.collect(toList());
 	}
